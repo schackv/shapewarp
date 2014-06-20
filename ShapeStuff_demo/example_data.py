@@ -2,16 +2,15 @@
 """
 Created on Fri Jun 20 10:42:03 2014
 
-@author: jsve
+@author: schackv
 """
 import os
 import glob
-import scipy.io
 import numpy as np
 from scipy.misc import imread
 
 DATA_DIR = os.path.join('.','data')
-PATTERN = '*.mat'
+PATTERN = '*.csv'
 
 class examples:
     """ Traverse the data examples and return a list of image objects"""
@@ -32,11 +31,13 @@ class examples:
         landmarks = np.vstack(landmarks)
         return landmarks
 
+
+""" A not so elegant class representing example image with landmark data"""
 class image:
 
-    
+        
     def __init__(self,filename):
-        self.image_filename = filename.replace('.mat','')
+        self.image_filename = filename.replace('landmarks','image').replace('.csv','.JPG')
         self.annotation_filename = filename
     
     """
@@ -50,8 +51,8 @@ class image:
     Read landmarks
     """
     def landmarks(self):
-        mat = scipy.io.loadmat(self.annotation_filename)
-        return mat['P']
+        return np.loadtxt(self.annotation_filename)
+        
         
     def has_image(self):
         return os.path.exists(self.image_filename)

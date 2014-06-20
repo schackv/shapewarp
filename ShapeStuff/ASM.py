@@ -2,7 +2,7 @@
 """
 Created on Wed Jun 18 11:18:20 2014
 
-@author: jsve
+@author: schackv
 """
 
 from . import GPA
@@ -19,9 +19,7 @@ class ASM:
     def build(self,landmarks):
                 
         # Do Generalized Procrustes analysis
-        gpa = GPA.GPA()
-        mu, S, Xnew =gpa.build(landmarks)
-       
+        mu, S, Xnew = GPA.generalized_procrustes_2d(landmarks)
        
         self.k = len(mu)/2      # Number of points
         self.MeanShape = np.array(mu)

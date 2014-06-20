@@ -2,7 +2,7 @@
 """
 Created on Wed Jun 18 13:57:26 2014
 
-@author: jsve
+@author: schackv
 """
 
 import matplotlib.pyplot as plt
