@@ -14,6 +14,9 @@ Keyword arguments are passed directly to plot command.
 """
 def plot_shape(P,clr,**plotargs):
 
+    if P.ndim == 2:
+        P = P.T.flatten()
+
     N = len(P)
     k = int(N/2)
     
@@ -24,7 +27,7 @@ def plot_shape(P,clr,**plotargs):
             plt.plot((x[i],x[i+1]),(y[i],y[i+1]),'-',color=clr,**plotargs) #,'color',clr,*plotargs)
         else:
             plt.plot((x[i],x[0]),(y[i],y[0]),'-',color=clr,**plotargs) #,'color',clr,*plotargs)
-        
+
 
 """
 Plot the mean shape +/- nstd times the principal component
