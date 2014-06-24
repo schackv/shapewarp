@@ -16,7 +16,7 @@ setup(
     license = 'MIT',
     url = 'http://compute.dtu.dk/~jsve',
     packages = find_packages(),
-    install_requires = ['numpy', 'scipy', 'matplotlib','glob'],
+    install_requires = ['numpy', 'scipy', 'matplotlib'],
     long_description = read('README.md'),
     classifiers = [
         'Development Status :: 1 - Beta',
