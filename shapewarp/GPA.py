@@ -9,12 +9,11 @@ Generalized Procrustes Analysis
 import numpy as np
     
 
-""" 
-Perform the generalized Procrustes analysis using the given landmarks.
-Landmarks are expected to be a numpy N x 2*p array where p is the number of landmarks
-and N the number of observation. x coordinates are before y coordinates in each row.
-"""
 def generalized_procrustes_2d(landmarks,ctr=False):
+    """Perform the generalized Procrustes analysis using the given landmarks.
+    Landmarks are expected to be a numpy N x 2*p array where p is the number of landmarks
+    and N the number of observation. x coordinates are before y coordinates in each row.
+    """
     N, p = landmarks.shape
     k = p/2
     

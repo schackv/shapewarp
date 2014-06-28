@@ -11,12 +11,11 @@ import numpy as np
 
 class ASM:
     
-    """
-    Build an active shape model from the landmarks given.
-    Landmarks are expected to be a numpy N x 2*p array 
-    where p is the number of landmarks.
-    """
     def build(self,landmarks):
+        """Build an active shape model from the landmarks given.
+        Landmarks are expected to be a numpy N x 2*p array 
+        where p is the number of landmarks.
+        """
                 
         # Do Generalized Procrustes analysis
         mu, S, Xnew = GPA.generalized_procrustes_2d(landmarks)

@@ -12,12 +12,11 @@ import scipy.ndimage as ndimage
 
 class Warper:
 
-
-    """ 
-    Initalize a Warper with a reference shape with coordinates in the 
-    numpy array 'shape'
-    """
     def __init__(self, shape, scale=1):
+        """ 
+        Initalize a Warper with a reference shape with coordinates in the 
+        numpy array 'shape'
+        """
         xy = shape.copy() * scale
         self.scale = scale
         
@@ -46,11 +45,10 @@ class Warper:
         self.warp_template = np.hstack((simplex_ids[:,np.newaxis],bary_coords))
         
 
-    """ 
-    Warp an image from the coordinates P in im to the mean shape associated
-    with the current instance of this Warper 
-    """    
     def warp_image(self, im, P):
+        """Warp an image from the coordinates P in im to the mean shape associated
+        with the current instance of this Warper 
+        """
         P = self.shape_to_xy(P)
                 
         # Transform template barycentric coordinates to im's image coordinates
@@ -82,15 +80,15 @@ class Warper:
             xy = np.hstack( (xy[:k],xy[-k:]) )
         return xy
 
-"""
-Get the interior triangulation of the mean shape
 
-Returns    xy, tri
+def MeanShapeTriangulation(self):
+    """Get the interior triangulation of the mean shape
+
+    Returns    xy, tri
     where xy are the coordinates of the points
     and tri is a p x 3 array of indices into xy defining the
     interior triangulation of xy
-"""
-def MeanShapeTriangulation(self):
+    """
     x = self.MeanShape[:self.k]
     y = self.MeanShape[-self.k:]
     xy = np.hstack((x,y))
@@ -108,12 +106,11 @@ def MeanShapeTriangulation(self):
     
     
     
-"""
-Given a list of simplices indexing into poly, return the simplices
-inside the polygon.
-poly_xy should be a N x 2 numpy array
-"""    
 def simplices_in_polygon(poly_xy,simplices):
+    """Given a list of simplices indexing into poly, return the simplices
+    inside the polygon.
+    poly_xy should be a N x 2 numpy array
+    """    
     from matplotlib.path import Path
     
     simp_means = [np.mean(poly_xy[s,:],axis=0) for s in simplices]
@@ -122,11 +119,10 @@ def simplices_in_polygon(poly_xy,simplices):
     return interior_simplices
 
 
-"""
-Convert xy coordinates to barycentric coordinates within the triangle in which
-it resides
-"""        
 def points_to_bary(tri,tetrahedra,targets):
+    """Convert xy coordinates to barycentric coordinates within the triangle in which
+    it resides
+    """        
     X = tri.transform[tetrahedra,:2]
     Y = targets - tri.transform[tetrahedra,2]
     b = np.einsum('ijk,ik->ij', X, Y)
